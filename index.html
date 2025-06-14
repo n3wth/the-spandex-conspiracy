@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Spandex Conspiracy - Audiobook</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- Open Graph / Facebook / iMessage -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/">
+  <meta property="og:title" content="The Spandex Conspiracy - Audiobook">
+  <meta property="og:description" content="An unusual morning jog, a kiwi-caped hero, and a mystery involving missing toes and prize-winning produce. Dive into The Spandex Conspiracy!">
+  <meta property="og:image" content="https://b.newth.ai/spandex3.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+  <meta property="og:site_name" content="The Spandex Conspiracy Player">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="/">
+  <meta name="twitter:title" content="The Spandex Conspiracy - Audiobook">
+  <meta name="twitter:description" content="An unusual morning jog, a kiwi-caped hero, and a mystery involving missing toes and prize-winning produce. Dive into The Spandex Conspiracy!">
+  <meta name="twitter:image" content="https://b.newth.ai/spandex3.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(-45deg, #4A7C59, #C56B7A, #E6A05C, #6B8E84);
+      background-size: 400% 400%;
+      animation: gradientAnimation 30s ease infinite; 
+      color: #374151; /* gray-700 for base text color */
+      overflow-x: hidden; /* Prevent horizontal scroll from shapes */
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #animated-shapes-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; 
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .shape {
+      position: absolute;
+      opacity: 0.45; /* Base opacity */
+      will-change: transform, opacity; /* Hint for optimizing transform and opacity animations */
+      box-shadow: 0 0 15px rgba(0,0,0,0.15); 
+    }
+
+    /* Kiwi Slice - more artistic green, subtle seed update */
+    .shape-1 { 
+      width: 90px; height: 70px;
+      background-color: #7A8A4C; 
+      border-radius: 45% 55% 40% 60% / 50% 40% 60% 50%; 
+      position: relative;
+      top: 10%; left: 15%;
+      animation: float 12s infinite alternate ease-in-out; /* Faster duration */
+    }
+    .shape-1::before { 
+        content: '';
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 55%; height: 55%; 
+        background: 
+            radial-gradient(circle at 20% 25%, #424242 2px, transparent 3px),
+            radial-gradient(circle at 80% 25%, #424242 2px, transparent 3px),
+            radial-gradient(circle at 50% 35%, #424242 2px, transparent 3px),
+            radial-gradient(circle at 30% 65%, #424242 2px, transparent 3px),
+            radial-gradient(circle at 70% 65%, #424242 2px, transparent 3px),
+            radial-gradient(circle at 50% 80%, #424242 2px, transparent 3px);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.7;
+    }
+
+    /* Sausage */
+    .shape-2 { 
+      width: 130px; height: 40px;
+      background-color: #A1887F; 
+      border-radius: 20px; 
+      top: 60%; left: 70%;
+      animation: float 15s infinite alternate-reverse ease-in-out -5s; /* Faster duration */
+    }
+
+    /* Spandex Gleam - Star */
+    .shape-3 { 
+        width: 0px; height: 0px;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 50px solid #F4D03F; 
+        position: relative;
+        top: 30%; left: 80%;
+        animation: float 10s infinite alternate ease-in-out -2s, spin 8s linear infinite; /* Faster durations */
+        box-shadow: 0 0 15px rgba(244, 208, 63, 0.4);
+    }
+    .shape-3:before {
+        content: "";
+        width: 0px; height: 0px;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-top: 50px solid #F4D03F; 
+        position: absolute;
+        top: 15px; left: -25px;
+    }
+
+    /* Parsnip-like shape */
+    .shape-4 { 
+      width: 40px; height: 150px;
+      background-color: #F0EAD6; 
+      border-radius: 20px 20px 60% 60% / 20px 20px 50% 50%; 
+      top: 75%; left: 10%;
+      animation: float 14s infinite alternate-reverse ease-in-out -10s; /* Faster duration */
+    }
+    
+    /* Olivia's Pink - abstract spandex shimmer */
+    .shape-5 { 
+      width: 110px; height: 110px;
+      background-color: #D96C80; 
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      top: 45%; left: 38%;
+      animation: float 16s infinite alternate ease-in-out -7s; /* Faster duration */
+      box-shadow: 0 0 18px rgba(217, 108, 128, 0.3);
+    }
+
+    /* Pomegranate Seed (or deep red fruit element) */
+    .shape-6 { 
+      width: 65px; height: 65px;
+      background-color: #A73C4C; 
+      border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+      transform: rotate(45deg); 
+      top: 15%; left: 58%;
+      animation: float 13s infinite alternate ease-in-out -3s; /* Faster duration */
+    }
+
+    /* NEW Lemon Shape */
+    .shape-7 {
+      width: 75px; height: 100px;
+      background-color: #F7DC6F; 
+      border-radius: 50% 50% 40% 40% / 60% 60% 45% 45%; 
+      position: relative;
+      top: 70%; left: 85%;
+      animation: float 15s infinite alternate ease-in-out -12s; /* Faster duration */
+    }
+    .shape-7::after { 
+        content: '';
+        position: absolute;
+        top: -4px; 
+        left: 50%;
+        transform: translateX(-50%);
+        width: 10px;
+        height: 10px;
+        background-color: #E8C85A; 
+        border-radius: 50% 50% 20% 20% / 60% 60% 40% 40% ;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+        opacity: 0.4; /* Start opacity for pulsing effect */
+      }
+      50% {
+        transform: translateY(-50px) translateX(30px) rotate(15deg) scale(1.12); /* More pronounced movement and scale */
+        opacity: 0.75; /* Higher opacity for pulsing effect */
+      }
+      100% {
+        transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+        opacity: 0.4; /* Return to start opacity */
+      }
+    }
+
+    @keyframes spin { 
+        0% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(180deg) scale(1.2); } /* More pronounced scale */
+        100% { transform: rotate(360deg) scale(1); }
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px; 
+      background: transparent; 
+      border-radius: 3px;
+      outline: none;
+      transition: opacity .2s;
+      cursor: pointer;
+    }
+    input[type="range"]:hover {
+      opacity: 1; 
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px; 
+      height: 18px;
+      background: #F4D03F; 
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid #fef3c7; 
+      transition: background .2s, transform .15s ease-out;
+      box-shadow: 0 0 5px rgba(244, 208, 63, 0.5); 
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      background: #fbbf24; 
+      transform: scale(1.15); 
+    }
+    input[type="range"]::-webkit-slider-thumb:active {
+      transform: scale(1.1);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      background: #F4D03F; 
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid #fef3c7; 
+      transition: background .2s, transform .15s ease-out;
+      box-shadow: 0 0 5px rgba(244, 208, 63, 0.5);
+    }
+    input[type="range"]::-moz-range-thumb:hover {
+      background: #fbbf24; 
+      transform: scale(1.15);
+    }
+     input[type="range"]::-moz-range-thumb:active {
+      transform: scale(1.1);
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="text-gray-700">
+  <div id="animated-shapes-bg">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+    <div class="shape shape-5"></div>
+    <div class="shape shape-6"></div>
+    <div class="shape shape-7"></div> <!-- New Lemon Shape -->
+  </div>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

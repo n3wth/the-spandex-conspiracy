@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { HomeIcon, BookOpenIcon, HeadphonesIcon, FeatherIcon, MenuIcon, XIcon } from './Icons'; // Added MenuIcon, XIcon
 import type { NavigationItem } from '../types';
@@ -24,7 +24,7 @@ const navigationItems: NavigationItem[] = [
   },
 ];
 
-export const Navigation: React.FC = () => {
+export const Navigation: FC = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

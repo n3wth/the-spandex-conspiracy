@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { parseStoryContent } from '../utils';
 import { Loader2Icon, FeatherIcon, ArrowLeftIcon, ArrowRightIcon, BookOpenIcon } from '../components/Icons'; // Corrected import path
 
-export const StoryPage: React.FC = () => {
+export const StoryPage: FC = () => {
   const [storyContent, setStoryContent] = useState<string>('');
   const [chapters, setChapters] = useState<Array<{ title: string; content: string }>>([]);
   const [selectedChapter, setSelectedChapter] = useState<number>(() => {

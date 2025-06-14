@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { FC, useState, useEffect, type MouseEvent, type ChangeEvent } from 'react';
 import { PlayIcon, PauseIcon, VolumeUpIcon, VolumeOffIcon } from './Icons';
 import { useAudioPlayer } from '../hooks/useAudioPlayer';
 import { formatTime } from '../utils';
@@ -12,7 +12,7 @@ interface AudioPlayerProps {
   onEnded?: () => void;
 }
 
-export const AudioPlayer: React.FC<AudioPlayerProps> = ({
+export const AudioPlayer: FC<AudioPlayerProps> = ({
   src,
   title = "Audio Track",
   artist = "Unknown Artist",
@@ -42,7 +42,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     setIsAnimating(isPlaying);
   }, [isPlaying]);
 
-  const handlePlayPause = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handlePlayPause = (e: MouseEvent<HTMLButtonElement>) => {
     // Create ripple effect
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -59,12 +59,12 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     }
   };
 
-  const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleProgressChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newTime = parseFloat(e.target.value);
     seek(newTime);
   };
 
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
   };

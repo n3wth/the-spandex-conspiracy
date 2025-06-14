@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { AudioPlayer } from '../components/AudioPlayer';
 import { HeadphonesIcon, BookOpenIcon, ArrowRightIcon, SearchIcon, FeatherIcon, MapPinIcon, ChevronDownIcon } from '../components/Icons';
@@ -6,7 +6,7 @@ import { HeadphonesIcon, BookOpenIcon, ArrowRightIcon, SearchIcon, FeatherIcon, 
 const MP3_URL = "https://b.newth.ai/spandex.mp3";
 const COVER_ART_URL = "https://b.newth.ai/spandex3.png";
 
-export const HomePage: React.FC = () => {
+export const HomePage: FC = () => {
   return (
     <div className="min-h-screen overflow-x-hidden"> 
       {/* Immersive Hero Section - Inspired by Apple & Every.to */}

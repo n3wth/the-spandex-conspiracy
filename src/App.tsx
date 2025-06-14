@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
@@ -7,7 +7,7 @@ import { StoryPage } from './pages/StoryPage';
 import { AudioPage } from './pages/AudioPage';
 
 // Scroll to top on page change
-const ScrollToTop: React.FC = () => {
+const ScrollToTop: FC = () => {
   const { pathname } = useLocation();
   
   useEffect(() => {
@@ -17,7 +17,7 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
-export const App: React.FC = () => {
+export const App: FC = () => {
   return (
     <Router>
       <div className="flex flex-col min-h-screen bg-system-background font-sans antialiased">

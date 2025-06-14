@@ -1,7 +1,7 @@
-import React from 'react';
+import type { FC } from 'react';
 import { GithubIcon, TwitterIcon, InstagramIcon, LinkedinIcon, MailIcon, MessageCircleIcon, FeatherIcon } from './Icons';
 
-export const Footer: React.FC = () => {
+export const Footer: FC = () => {
   const socialLinks = [
     { name: 'GitHub', href: '#', icon: GithubIcon, color: 'hover:text-gray-400' },
     { name: 'Twitter', href: '#', icon: TwitterIcon, color: 'hover:text-sky-400' },

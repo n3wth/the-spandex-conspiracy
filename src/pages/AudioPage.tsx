@@ -1,11 +1,11 @@
-import React from 'react';
+import type { FC } from 'react';
 import { AudioPlayer } from '../components/AudioPlayer';
 import { HeadphonesIcon, SparklesIcon, ClockIcon, GaugeIcon, FileAudioIcon, Disc3Icon } from '../components/Icons'; // Updated imports
 
 const MP3_URL = "https://b.newth.ai/spandex.mp3";
 const COVER_ART_URL = "https://b.newth.ai/spandex3.png";
 
-export const AudioPage: React.FC = () => {
+export const AudioPage: FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-system-background to-system-gray-secondary text-system-text">
       {/* Header */}

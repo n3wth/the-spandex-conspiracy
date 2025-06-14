@@ -16,7 +16,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
 }) => {
   return (
     <div 
-      className={`relative group card p-8 h-80 ${bgGradient} border-0 overflow-hidden transform transition-all duration-700 hover:scale-105 hover:rotate-1`}
+      className={`relative group p-8 h-80 ${bgGradient} rounded-3xl overflow-hidden transform transition-all duration-700 hover:scale-105 hover:rotate-1 shadow-2xl hover:shadow-3xl`}
       style={{ animationDelay: `${delay}ms` }}
     >
       {/* Superhero Background Pattern */}
@@ -41,8 +41,8 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
         </div>
       </div>
       
-      {/* Hover Effect Overlay */}
-      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      {/* Hover Effect Overlay - enhances the gradient instead of overriding it */}
+      <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       
       {/* Animated Border */}
       <div className="absolute inset-0 border-2 border-white/30 rounded-3xl group-hover:border-white/50 transition-colors duration-300" />

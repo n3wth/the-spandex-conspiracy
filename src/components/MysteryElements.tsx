@@ -20,7 +20,7 @@ const ClueCard: React.FC<ClueCardProps> = ({
       style={{ animationDelay: `${delay}ms` }}
       onClick={() => setIsRevealed(!isRevealed)}
     >
-      <div className={`card p-6 h-64 bg-gradient-to-br ${color} border-0 overflow-hidden relative`}>
+      <div className={`p-6 h-64 bg-gradient-to-br ${color} rounded-3xl overflow-hidden relative shadow-2xl hover:shadow-3xl transition-all duration-500`}>
         {/* Mystery Pattern Background */}
         <div className="absolute inset-0 opacity-5">
           <div className="grid grid-cols-6 gap-2 h-full">
@@ -64,6 +64,9 @@ const ClueCard: React.FC<ClueCardProps> = ({
             </div>
           )}
         </div>
+        
+        {/* Hover Effect Overlay - subtle enhancement */}
+        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
         
         {/* Animated Border */}
         <div className="absolute inset-0 border-2 border-white/20 rounded-3xl group-hover:border-white/40 transition-colors duration-300" />

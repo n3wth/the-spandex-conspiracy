@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-spandex-cream to-white min-h-screen;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-spandex-yellow hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-gray-900 font-semibold py-2 px-4 rounded-lg border border-gray-200 transition-colors duration-200;
+  }
+  
+  .card {
+    @apply bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100;
+  }
+  
+  .audio-player {
+    @apply bg-amber-50/95 backdrop-blur-sm rounded-xl shadow-xl border border-amber-200/50;
+  }
+}

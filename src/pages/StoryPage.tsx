@@ -25,42 +25,53 @@ export const StoryPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse-slow text-xl text-gray-600">Loading the conspiracy...</div>
+      <div className="min-h-screen flex items-center justify-center bg-system-background">
+        <div className="text-center">
+          <div className="w-8 h-8 bg-system-blue rounded-full animate-pulse mb-4 mx-auto"></div>
+          <div className="text-headline text-system-text-secondary">Loading the conspiracy...</div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+    <div className="min-h-screen bg-system-background">
+      {/* Header */}
+      <div className="hero-section py-16">
+        <div className="max-w-4xl mx-auto text-center px-6">
+          <h1 className="text-large-title font-bold text-system-text mb-4">
             The Spandex Conspiracy
           </h1>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="text-title3 text-system-text-secondary text-balance">
             A thrilling adventure through London's most mysterious conspiracy
           </p>
         </div>
+      </div>
 
+      <div className="max-w-7xl mx-auto px-6 pb-24">
         <div className="lg:grid lg:grid-cols-4 lg:gap-8">
           {/* Chapter Navigation */}
           {chapters.length > 0 && (
             <div className="lg:col-span-1">
               <div className="card p-6 sticky top-24">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Chapters</h3>
-                <nav className="space-y-2">
+                <h3 className="text-title3 font-semibold text-system-text mb-6">Chapters</h3>
+                <nav className="space-y-1">
                   {chapters.map((chapter, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedChapter(index)}
-                      className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors duration-200 ${
+                      className={`w-full text-left px-4 py-3 rounded-xl text-subheadline font-medium transition-all duration-200 ease-out interactive ${
                         selectedChapter === index
-                          ? 'bg-spandex-yellow text-gray-900'
-                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                          ? 'bg-system-blue text-white'
+                          : 'text-system-text-secondary hover:text-system-text hover:bg-system-gray-quinary'
                       }`}
                     >
-                      Chapter {index + 1}: {chapter.title}
+                      <div className="font-semibold text-caption1 mb-1">
+                        Chapter {index + 1}
+                      </div>
+                      <div className="truncate">
+                        {chapter.title}
+                      </div>
                     </button>
                   ))}
                 </nav>
@@ -73,19 +84,28 @@ export const StoryPage: React.FC = () => {
             <div className="card p-8">
               {chapters.length > 0 ? (
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                    Chapter {selectedChapter + 1}: {chapters[selectedChapter].title}
-                  </h2>
+                  <div className="mb-8">
+                    <div className="text-caption1 font-medium text-system-text-tertiary mb-2">
+                      Chapter {selectedChapter + 1}
+                    </div>
+                    <h2 className="text-title1 font-bold text-system-text mb-4">
+                      {chapters[selectedChapter].title}
+                    </h2>
+                    <div className="w-12 h-1 bg-system-blue rounded-full"></div>
+                  </div>
+                  
                   <div className="prose prose-lg max-w-none">
                     {chapters[selectedChapter].content.split('\n').map((paragraph, index) => (
-                      <p key={index} className="mb-4 text-gray-700 leading-relaxed">
-                        {paragraph}
-                      </p>
+                      paragraph.trim() && (
+                        <p key={index} className="mb-6 text-body text-system-text leading-relaxed">
+                          {paragraph}
+                        </p>
+                      )
                     ))}
                   </div>
                   
                   {/* Chapter Navigation */}
-                  <div className="flex justify-between mt-8 pt-6 border-t border-gray-200">
+                  <div className="flex justify-between items-center mt-12 pt-8 border-t border-system-separator">
                     <button
                       onClick={() => setSelectedChapter(Math.max(0, selectedChapter - 1))}
                       disabled={selectedChapter === 0}
@@ -95,6 +115,11 @@ export const StoryPage: React.FC = () => {
                     >
                       Previous Chapter
                     </button>
+                    
+                    <div className="text-footnote text-system-text-tertiary">
+                      {selectedChapter + 1} of {chapters.length}
+                    </div>
+                    
                     <button
                       onClick={() => setSelectedChapter(Math.min(chapters.length - 1, selectedChapter + 1))}
                       disabled={selectedChapter === chapters.length - 1}
@@ -109,9 +134,11 @@ export const StoryPage: React.FC = () => {
               ) : (
                 <div className="prose prose-lg max-w-none">
                   {storyContent.split('\n').map((line, index) => (
-                    <p key={index} className="mb-4 text-gray-700 leading-relaxed">
-                      {line}
-                    </p>
+                    line.trim() && (
+                      <p key={index} className="mb-6 text-body text-system-text leading-relaxed">
+                        {line}
+                      </p>
+                    )
                   ))}
                 </div>
               )}

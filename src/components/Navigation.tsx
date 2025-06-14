@@ -28,7 +28,7 @@ export const Navigation: React.FC = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   
-  // Add scroll effect
+  // Enhanced scroll effect
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 20;
@@ -37,7 +37,7 @@ export const Navigation: React.FC = () => {
       }
     };
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -45,27 +45,34 @@ export const Navigation: React.FC = () => {
 
   return (
     <nav 
-      className={`sticky top-0 z-50 transition-all duration-300 ease-out ${
+      className={`sticky top-0 z-50 transition-all duration-500 ease-out ${
         scrolled 
-          ? 'glass-panel shadow-sm'
-          : 'bg-system-background/80 backdrop-blur-sm border-b border-system-separator'
+          ? 'bg-system-background/95 backdrop-blur-xl border-b border-system-separator shadow-lg'
+          : 'bg-system-background/80 backdrop-blur-lg border-b border-system-separator/50'
       }`}
+      style={{
+        backdropFilter: scrolled ? 'blur(40px) saturate(180%)' : 'blur(20px) saturate(120%)',
+        WebkitBackdropFilter: scrolled ? 'blur(40px) saturate(180%)' : 'blur(20px) saturate(120%)',
+      }}
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 interactive group">
-            <div className="w-8 h-8 bg-gradient-to-br from-spandex-primary to-spandex-accent rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">S</span>
+          {/* Premium Logo */}
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="relative">
+              <div className="w-9 h-9 bg-gradient-to-br from-spandex-primary via-spandex-accent to-spandex-primary rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                <span className="text-white font-bold text-sm">S</span>
+              </div>
+              <div className="absolute inset-0 w-9 h-9 bg-gradient-to-br from-spandex-primary to-spandex-accent rounded-xl opacity-0 group-hover:opacity-30 blur-md transition-all duration-300"></div>
             </div>
-            <span className="text-title3 font-bold text-system-text">
+            <span className="text-title3 font-bold text-system-text group-hover:text-spandex-primary transition-colors duration-300">
               The Spandex Conspiracy
             </span>
           </Link>
           
-          {/* Navigation Links */}
-          <div className="flex items-center space-x-1">
-            {navigationItems.map((item) => {
+          {/* Premium Navigation Links */}
+          <div className="flex items-center space-x-2">
+            {navigationItems.map((item, index) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
               
@@ -73,14 +80,40 @@ export const Navigation: React.FC = () => {
                 <Link
                   key={item.id}
                   to={item.path}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-callout font-medium transition-all duration-200 ease-out nav-link ${
+                  className={`relative flex items-center space-x-2 px-4 py-2.5 rounded-xl text-callout font-medium transition-all duration-300 ease-out group ${
                     isActive
-                      ? 'bg-system-blue text-white shadow-sm'
-                      : 'text-system-text-secondary hover:text-system-text hover:bg-system-gray-quinary'
+                      ? 'text-white shadow-lg'
+                      : 'text-system-text-secondary hover:text-system-text'
                   }`}
+                  style={{
+                    animationDelay: `${index * 100}ms`,
+                  }}
                 >
-                  {Icon && <Icon className="w-4 h-4" />}
-                  <span>{item.label}</span>
+                  {/* Background for active state */}
+                  <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
+                    isActive 
+                      ? 'bg-gradient-to-r from-system-blue to-system-blue-secondary opacity-100' 
+                      : 'bg-system-gray-quinary opacity-0 group-hover:opacity-100'
+                  }`}></div>
+                  
+                  {/* Content */}
+                  <div className="relative flex items-center space-x-2">
+                    {Icon && (
+                      <Icon className={`w-4 h-4 transition-transform duration-300 ${
+                        isActive ? 'scale-110' : 'group-hover:scale-105'
+                      }`} />
+                    )}
+                    <span className="relative">
+                      {item.label}
+                      {/* Active indicator */}
+                      {isActive && (
+                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white/30 rounded-full"></div>
+                      )}
+                    </span>
+                  </div>
+                  
+                  {/* Subtle ripple effect on click */}
+                  <div className="absolute inset-0 rounded-xl opacity-0 group-active:opacity-20 bg-white transition-opacity duration-150"></div>
                 </Link>
               );
             })}

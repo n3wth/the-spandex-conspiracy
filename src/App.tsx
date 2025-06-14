@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
+import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
 import { StoryPage } from './pages/StoryPage';
 import { AudioPage } from './pages/AudioPage';
@@ -16,22 +17,21 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-system-background text-system-text">
+      <div className="flex flex-col min-h-screen bg-system-background font-sans antialiased">
         <Navigation />
-        <ScrollToTop />
-        <main className="relative">
+        <main className="flex-grow">
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/story" element={<StoryPage />} />
             <Route path="/audio" element={<AudioPage />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   );
 };
-
-export default App;

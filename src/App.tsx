@@ -20,15 +20,18 @@ const ScrollToTop: React.FC = () => {
 export const App: React.FC = () => {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-system-background font-sans antialiased">
+      <div className="flex flex-col min-h-screen bg-gradient-to-br from-system-background via-system-background-secondary to-system-background font-sans antialiased">
         <Navigation />
-        <main className="flex-grow">
+        <main className="flex-grow relative">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(29,78,216,0.15)_0%,_rgba(30,64,175,0.1)_20%,_rgba(17,24,39,0)_60%)] pointer-events-none" />
           <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/story" element={<StoryPage />} />
-            <Route path="/audio" element={<AudioPage />} />
-          </Routes>
+          <div className="relative z-10">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/story" element={<StoryPage />} />
+              <Route path="/audio" element={<AudioPage />} />
+            </Routes>
+          </div>
         </main>
         <Footer />
       </div>
